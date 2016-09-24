@@ -9,11 +9,28 @@
         }
     }
 
-    function getJobs(position) {
+    function getJobsLength(latitude, longitude, software) {
+
+        var toReturn = '';
+
+        var queryURL = "https://jobs.github.com/positions.json?lat=" + latitude + "&long=" + longitude + "&search=" + software;
+        $.ajax({url: queryURL, method: 'GET', dataType: 'jsonp'}).done(function(data) {
+//        console.log(data);
+//        console.log(data.length);
+            toReturn = data.length;
+        });
+
+        return toReturn;
+    }
+
+    function getJobs(latitude, longitude, software) {
 //        https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823&description=react
 
-        var queryURL = "https://jobs.github.com/positions.json?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "";
+        var queryURL = "https://jobs.github.com/positions.json?lat=" + latitude + "&long=" + longitude + "&search=" + software;
         $.ajax({url: queryURL, method: 'GET', dataType: 'jsonp'}).done(function(data) {
+
+            console.log(data.length);
+
             console.log(data);
 
 //
@@ -30,7 +47,22 @@
     }
     function showPosition(position) {
         x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude;
+            "<br>Longitude: " + position.coords.longitude;
+
+        var javaJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'java');
+        console.log(javaJobs);
+
+        var phpJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'php');
+        console.log(phpJobs);
+
+        var rubyJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'ruby');
+        console.log(rubyJobs);
+
+        var pythonJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'python');
+        console.log(pythonJobs);
+
+        var javascriptJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'javascript');
+        console.log(javascriptJobs);
 
 
 
