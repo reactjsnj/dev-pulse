@@ -45,6 +45,11 @@
 </nav>
 
 <div class="container center">
+
+    <div class="progress">
+        <div class="determinate" style="width: 70%"></div>
+        <div class="determinate" style="width: 30%"></div>
+    </div>
     <p>Click this button to get your coordinates.</p>
 
 
@@ -73,40 +78,73 @@
         async defer></script>
 <script>
 
+
 //    https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true
     var x = document.getElementById("demo");
 
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
-            navigator.geolocation.getCurrentPosition(getJobs);
+//            navigator.geolocation.getCurrentPosition(getJobs);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
 
-    function getJobs(position) {
+function getJobsLength(latitude, longitude, software) {
+
+    var toReturn = '';
+
+    var queryURL = "https://jobs.github.com/positions.json?lat=" + latitude + "&long=" + longitude + "&search=" + software;
+    $.ajax({url: queryURL, method: 'GET', dataType: 'jsonp'}).done(function(data) {
+//        console.log(data);
+//        console.log(data.length);
+        toReturn = data.length;
+    });
+
+    return toReturn;
+}
+
+function getJobs(latitude, longitude, software) {
 //        https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823&description=react
 
-        var queryURL = "https://jobs.github.com/positions.json?lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "";
-        $.ajax({url: queryURL, method: 'GET', dataType: 'jsonp'}).done(function(data) {
-            console.log(data);
+    var queryURL = "https://jobs.github.com/positions.json?lat=" + latitude + "&long=" + longitude + "&search=" + software;
+    $.ajax({url: queryURL, method: 'GET', dataType: 'jsonp'}).done(function(data) {
+
+        console.log(data.length);
+
+        console.log(data);
 
 //
-            $.each( data, function( key, value ) {
-                console.log( key + ": " + value );
-                var gig = '<li class="collection-item"><a href="' + value.url + '">' + value.company + ': ' + value.title + '<i class="material-icons">send</i></a></li>';
-                $('#joblist').append(gig);
-            });
-
-
-
+        $.each( data, function( key, value ) {
+            console.log( key + ": " + value );
+            var gig = '<li class="collection-item"><a href="' + value.url + '">' + value.company + ': ' + value.title + '<i class="material-icons">send</i></a></li>';
+            $('#joblist').append(gig);
         });
 
-    }
+
+
+    });
+
+}
     function showPosition(position) {
         x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
+
+        var javaJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'java');
+        console.log(javaJobs);
+
+        var phpJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'php');
+        console.log(phpJobs);
+
+        var rubyJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'ruby');
+        console.log(rubyJobs);
+
+        var pythonJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'python');
+        console.log(pythonJobs);
+
+        var javascriptJobs = getJobsLength(position.coords.latitude, position.coords.longitude, 'javascript');
+        console.log(javascriptJobs);
 
 
 
