@@ -1,0 +1,88 @@
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#index-banner {
+  background: #000000;
+  background-image:  url("images/bg.jpeg");
+  background-image: linear-gradient(rgba(13, 71, 161,0.5), rgba(13, 71, 161,0.7)),url("images/bg.jpeg");
+  background-size: cover;
+  padding: 100px 0px;
+}
+.text-upper {
+  text-transform: uppercase;
+}
+.services {
+  padding: 65px 0px;
+}
+.logo {
+  max-height: 55px;
+}
+
+.promo i {
+  margin: 40px 0;
+  color: #01579b;
+  font-size: 5rem;
+  display: block;
+}
+.parallax img {
+  max-width: 100%;
+}
+.side-nav {
+  transform: translateX(-100%);
+  transition: all .5s;
+}
+.side-nav.open {
+  transform: translateX(0px);
+}
+#sidenav-overlay {
+  display: none;
+}
+#sidenav-overlay.open {
+  display: block;
+}
+
+.typed-cursor{
+  opacity: 1;
+  -webkit-animation: blink 1s infinite;
+  -moz-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+}
+@keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
