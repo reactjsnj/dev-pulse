@@ -16,14 +16,14 @@ $(document).ready(function(){
 
 	function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 
-		return "<div class='card'><h4>"+n+"</h4>"+
+		return "<h4>"+n+"</h4><table>"+
 			"<tr><td>Javascript</td><td>"+(d.javascript)+"</td></tr>"+
 			"<tr><td>Node</td><td>"+(d.node)+"</td></tr>"+
 			"<tr><td>Python</td><td>"+(d.python)+"</td></tr>"+
 			"<tr><td>Ruby</td><td>"+(d.ruby)+"</td></tr>"+
 			"<tr><td>PHP</td><td>"+(d.php)+"</td></tr>"+
-			"<iframe src='https://map-data-1e0ef.firebaseapp.com/?s="+ (d.id)+"' width='275' height='325'></iframe>" 
-			"</div>";
+			"<iframe src='https://map-data-1e0ef.firebaseapp.com/?s="+ (d.id)+"' width='275' height='325'></iframe>"+ 
+			"</table>";
 	}
 	
 	var sampleData ={};	/* Sample random data. */	
@@ -108,13 +108,12 @@ $(document).ready(function(){
 
 	$('#radioStacked1').on('click', function(){
 
-		$('.mapLabel').html('Jobs that require Javascript');
+		$('.mapLabel').html('Popularity Of Javascript');
 
 		function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 			return "<h4>"+n+"</h4><table>"+
-				"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-				"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-				"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+				"<tr><td>Number of Jobs</td><td>"+(d.javascript)+"</td></tr>"+
+				"<tr><td>Popularity</td><td> "+(d.javascriptPercentage)+"%</td></tr>"+
 				"</table>";
 		}
 		
@@ -125,18 +124,39 @@ $(document).ready(function(){
 		"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
 		"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 			.forEach(function(d){ 
-				var low=Math.round(100*Math.random()), 
-					mid=Math.round(100*Math.random()), 
-					high=Math.round(100*Math.random());
-				sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-						avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffff", "#ffff00")(low/100)}; 
-			});
-		
-		/* draw states on id #statesvg */	
-		mapJavascript.draw("#javascriptMap", sampleData, tooltipHtml);
-		
-		d3.select(self.frameElement).style("height", "600px");
 
+				var javascriptStateJob;
+
+				var javascriptStatePercent;
+
+				database.ref(d).once("value").then(function(snapshot){
+
+					javascriptStateJob = snapshot.val().javascript;
+
+					javascriptStatePercent= snapshot.val().javascriptPercentage;
+
+					sampleData[d]={
+
+						javascript: javascriptStateJob, 
+
+						javascriptPercentage: (javascriptStatePercent*100).toFixed(2),
+
+						color:d3.interpolate("#ffffff", "#ffff00")((javascriptStatePercent.toFixed(2))*2)
+
+					};
+
+					if(d == 'VA'){
+
+						mapJavascript.draw("#javascriptMap", sampleData, tooltipHtml);
+			
+						d3.select(self.frameElement).style("height", "600px");
+
+					}
+
+				});
+
+			});
+	
 		$('svg').css('display', 'none');
 
 		$('#javascriptMap').css('display', 'block');
@@ -145,14 +165,13 @@ $(document).ready(function(){
 
 	$('#radioStacked2').on('click', function(){
 
-		$('.mapLabel').html('Jobs that require Node');
+		$('.mapLabel').html('Popularity Of Node');
 
 		function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 			return "<h4>"+n+"</h4><table>"+
-			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-			"</table>";
+				"<tr><td>Number of Jobs</td><td>"+(d.node)+"</td></tr>"+
+				"<tr><td>Popularity</td><td> "+(d.nodePercentage)+"%</td></tr>"+
+				"</table>";
 		}
 		
 		var sampleData ={};	/* Sample random data. */	
@@ -162,17 +181,38 @@ $(document).ready(function(){
 		"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
 		"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 			.forEach(function(d){ 
-				var low=Math.round(100*Math.random()), 
-					mid=Math.round(100*Math.random()), 
-					high=Math.round(100*Math.random());
-				sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-						avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffff", "#00ff00")(low/100)}; 
+
+				var nodeStateJob;
+
+				var nodeStatePercent;
+
+				database.ref(d).once("value").then(function(snapshot){
+
+					nodeStateJob = snapshot.val().node;
+
+					nodeStatePercent= snapshot.val().nodePercentage;
+
+					sampleData[d]={
+
+						node: nodeStateJob, 
+
+						nodePercentage: (nodeStatePercent*100).toFixed(2),
+
+						color:d3.interpolate("#ffffff", "#00ff00")((nodeStatePercent.toFixed(2))*3)
+
+					};
+
+					if(d == 'VA'){
+
+						mapNode.draw("#nodeMap", sampleData, tooltipHtml);
+			
+						d3.select(self.frameElement).style("height", "600px");
+
+					}
+
+				});
+
 			});
-		
-		/* draw states on id #statesvg */	
-		mapNode.draw("#nodeMap", sampleData, tooltipHtml);
-		
-		d3.select(self.frameElement).style("height", "600px");
 		
 		$('svg').css('display', 'none');
 
@@ -182,14 +222,13 @@ $(document).ready(function(){
 
 	$('#radioStacked3').on('click', function(){
 
-		$('.mapLabel').html('Jobs that require Python');
+		$('.mapLabel').html('Popularity Of Python');
 
 		function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 			return "<h4>"+n+"</h4><table>"+
-			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-			"</table>";
+				"<tr><td>Number of Jobs</td><td>"+(d.python)+"</td></tr>"+
+				"<tr><td>Popularity</td><td> "+(d.pythonPercentage)+"%</td></tr>"+
+				"</table>";
 		}
 		
 		var sampleData ={};	/* Sample random data. */	
@@ -199,17 +238,38 @@ $(document).ready(function(){
 		"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
 		"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 			.forEach(function(d){ 
-				var low=Math.round(100*Math.random()), 
-					mid=Math.round(100*Math.random()), 
-					high=Math.round(100*Math.random());
-				sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-						avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffff", "#0000ff")(low/100)}; 
+
+				var pythonStateJob;
+
+				var pythonStatePercent;
+
+				database.ref(d).once("value").then(function(snapshot){
+
+					pythonStateJob = snapshot.val().python;
+
+					pythonStatePercent= snapshot.val().pythonPercentage;
+
+					sampleData[d]={
+
+						python: pythonStateJob, 
+
+						pythonPercentage: (pythonStatePercent*100).toFixed(2),
+
+						color:d3.interpolate("#ffffff", "#0000ff")((pythonStatePercent.toFixed(2))*1.5)
+
+					};
+
+					if(d == 'VA'){
+
+						mapPython.draw("#pythonMap", sampleData, tooltipHtml);
+			
+						d3.select(self.frameElement).style("height", "600px");
+
+					}
+
+				});
+
 			});
-		
-		/* draw states on id #statesvg */	
-		mapPython.draw("#pythonMap", sampleData, tooltipHtml);
-		
-		d3.select(self.frameElement).style("height", "600px");
 
 		$('svg').css('display', 'none');
 
@@ -220,13 +280,12 @@ $(document).ready(function(){
 
 	$('#radioStacked4').on('click', function(){
 
-		$('.mapLabel').html('Jobs that require Ruby');
+		$('.mapLabel').html('Popularity Of Ruby');
 
 		function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 			return "<h4>"+n+"</h4><table>"+
-				"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-				"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-				"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+				"<tr><td>Number of Jobs</td><td>"+(d.ruby)+"</td></tr>"+
+				"<tr><td>Popularity</td><td> "+(d.rubyPercentage)+"%</td></tr>"+
 				"</table>";
 		}
 		
@@ -238,18 +297,37 @@ $(document).ready(function(){
 		"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 			.forEach(function(d){ 
 
+				var rubyStateJob;
 
-				var low=Math.round(100*Math.random()), 
-					mid=Math.round(100*Math.random()), 
-					high=Math.round(100*Math.random());
-				sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-						avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffff", "#ff0000")(low/100)}; 
+				var rubyStatePercent;
+
+				database.ref(d).once("value").then(function(snapshot){
+
+					rubyStateJob = snapshot.val().ruby;
+
+					rubyStatePercent= snapshot.val().rubyPercentage;
+
+					sampleData[d]={
+
+						ruby: rubyStateJob, 
+
+						rubyPercentage: (rubyStatePercent*100).toFixed(2),
+
+						color:d3.interpolate("#ffffff", "#ff0000")((rubyStatePercent.toFixed(2))*1.5)
+
+					};
+
+					if(d == 'VA'){
+
+						mapRuby.draw("#rubyMap", sampleData, tooltipHtml);
+			
+						d3.select(self.frameElement).style("height", "600px");
+
+					}
+
+				});
+
 			});
-		
-		/* draw states on id #statesvg */	
-		mapRuby.draw("#rubyMap", sampleData, tooltipHtml);
-		
-		d3.select(self.frameElement).style("height", "600px");
 
 		$('svg').css('display', 'none');
 
@@ -260,14 +338,13 @@ $(document).ready(function(){
 
 	$('#radioStacked5').on('click', function(){
 
-		$('.mapLabel').html('Jobs that require PHP');
+		$('.mapLabel').html('Popularity Of PHP');
 
 		function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
 			return "<h4>"+n+"</h4><table>"+
-			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-			"</table>";
+				"<tr><td>Number of Jobs</td><td>"+(d.php)+"</td></tr>"+
+				"<tr><td>Popularity</td><td> "+(d.phpPercentage)+"%</td></tr>"+
+				"</table>";
 		}
 		
 		var sampleData ={};	/* Sample random data. */	
@@ -277,17 +354,38 @@ $(document).ready(function(){
 		"CO", "NM", "OR", "ND", "SD", "NE", "IA", "MS", "IN", "IL", "MN", 
 		"WI", "MO", "AR", "OK", "KS", "LA", "VA"]
 			.forEach(function(d){ 
-				var low=Math.round(100*Math.random()), 
-					mid=Math.round(100*Math.random()), 
-					high=Math.round(100*Math.random());
-				sampleData[d]={low:d3.min([low,mid,high]), high:d3.max([low,mid,high]), 
-						avg:Math.round((low+mid+high)/3), color:d3.interpolate("#ffffff", "#551a8b")(low/100)}; 
+
+				var phpStateJob;
+
+				var phpStatePercent;
+
+				database.ref(d).once("value").then(function(snapshot){
+
+					phpStateJob = snapshot.val().php;
+
+					phpStatePercent= snapshot.val().phpPercentage;
+
+					sampleData[d]={
+
+						php: phpStateJob, 
+
+						phpPercentage: (phpStatePercent*100).toFixed(2),
+
+						color:d3.interpolate("#ffffff", "#551a8b")((phpStatePercent.toFixed(2))*1.8)
+
+					};
+
+					if(d == 'VA'){
+
+						mapPHP.draw("#phpMap", sampleData, tooltipHtml);
+			
+						d3.select(self.frameElement).style("height", "600px");
+
+					}
+
+				});
+
 			});
-		
-		/* draw states on id #statesvg */	
-		mapPHP.draw("#phpMap", sampleData, tooltipHtml);
-		
-		d3.select(self.frameElement).style("height", "600px");
 
 		$('svg').css('display', 'none');
 
