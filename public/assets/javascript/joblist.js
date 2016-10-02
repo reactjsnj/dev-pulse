@@ -34,7 +34,7 @@ $(document).ready(function () {
  // #location-selected #software-selected
     $(document).on('click', '.select-software', function () {
 
-        var softwareselected = $(this).data('software');
+        softwareselected = $(this).data('software');
 
         $('#software-selected').text(softwareselected);
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
     });
     $(document).on('click', '.select-location', function () {
 
-        var locationselected = $(this).data('location');
+        locationselected = $(this).data('location');
 
         $('#location-selected').text(locationselected);
 
@@ -62,9 +62,30 @@ function getJobs(software, location, limit) {
     $('#joblist').empty();
 
 
+
+
+    //GitHub Jobs API by Anthony
+    var githubJobsURL = 'https://jobs.github.com/positions.json?description=' + software + '&location=' + location;
+
+    console.log(githubJobsURL);
+
+    $.ajax({
+        url: githubJobsURL,
+        method: 'GET',
+        dataType: 'jsonp'
+    }).done(function (response) {
+        $.each(response, function (key, value) {
+            var gig = ' <div class="col s12 m4"><div class="card"><div class="card-content"><span class="card-title truncate">' + value.title + '</span><p> at ' + value.company + '<br></p></div><div class="card-action"> <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">add</i> Save</a> <a href="' + value.url + '" class="waves-effect waves-light btn blue darken-3" target="_blank"><i class="material-icons left">call_made</i> APPLY</a>   </div></div></div>';
+            $('#joblist').append(gig);
+        });
+
+    });
+    
+
     //Indeed API by Erick
     var indeedURL = "https://crossorigin.me/http://api.indeed.com/ads/apisearch?publisher=8023780673544955&format=json&v=2&q=" + software + "&l=" + location + "&limit=" + limit;
 
+    console.log(indeedURL);
 
     $.ajax({
         url: indeedURL,
@@ -89,22 +110,6 @@ function getJobs(software, location, limit) {
         });
 
 
-
-
-    //GitHub Jobs API by Anthony
-    var githubJobsURL = 'https://jobs.github.com/positions.json?description=' + software + '&location=' + location;
-
-    $.ajax({
-        url: githubJobsURL,
-        method: 'GET',
-        dataType: 'jsonp'
-    }).done(function (response) {
-        $.each(response, function (key, value) {
-            var gig = ' <div class="col s12 m4"><div class="card"><div class="card-content"><span class="card-title truncate">' + value.title + '</span><p> at ' + value.company + '<br></p></div><div class="card-action"> <a class="waves-effect waves-light btn blue darken-3"><i class="material-icons left">add</i> Save</a> <a href="' + value.url + '" class="waves-effect waves-light btn blue darken-3" target="_blank"><i class="material-icons left">call_made</i> APPLY</a>   </div></div></div>';
-            $('#joblist').append(gig);
-        });
-
-    });
 
 
 }

@@ -74,13 +74,13 @@ function initApp() {
 
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
 
-            console.log(displayName);
+            // console.log(displayName);
             $('#auth-name').text(displayName);
 
-            console.log(photoURL);
+            // console.log(photoURL);
             $('#auth-avatar').attr('src', photoURL);
 
-            console.log(email);
+            // console.log(email);
             $('#auth-status').text(email);
 
 
