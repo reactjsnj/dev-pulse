@@ -140,77 +140,41 @@
 </div>
 
 
-<div class="container">
+
+<div class="jobs-container container">
     <br>
     <br>
     <div class="row">
         <div class="col s12">
             <h3 class="center">
-                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
+                <a id="software-selected" class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
                 jobs in
-                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-city">New York City</a>
+                <a id="location-selected" class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-state">New York City</a>
             </h3>
 
 
 
             <!-- Dropdowns for Jobs -->
-            <ul id='dropdown-city' class='dropdown-content blue-text'>
-                <li><a href="#!" class="blue-text">New York City</a></li>
+            <ul id='dropdown-state' class='dropdown-content blue-text'>
+                <li><a href="#!" class="blue-text">Select State</a></li>
                 <li class="divider"></li>
-                <li><a href="#!" class="blue-text">San Fransisco</a></li>
-                <li><a href="#!" class="blue-text">Japan</a></li>
             </ul>
+
             <ul id='dropdown-software' class='dropdown-content'>
-                <li><a href="#!" class="blue-text">Javascript</a></li>
+                <li><a href="#!" class="blue-text">Select Software</a></li>
                 <li class="divider"></li>
-                <li><a href="#!" class="blue-text">Node</a></li>
-                <li><a href="#!" class="blue-text">React</a></li>
-                <li><a href="#!" class="blue-text">PHP</a></li>
-                <li><a href="#!" class="blue-text">Python</a></li>
-                <li><a href="#!" class="blue-text">Ruby</a></li>
             </ul>
 
         </div>
     </div>
-<div class="row" id="joblist">
-    <!--Job Cards Returned Here-->
-</div>
-    <br>
-    <br>
-</div>
-
-
-<div id="map_canvas" style="width: 100%; height: 500px">
-</div>
-
-<div class="container center">
-
-    <br>
-    <br>
-    <h1 class="header center text-upper">GEO HACK YOUR NEXT JOB</h1>
-
-    <div class="row center">
-        <h5 class="header col s12 light">Find a job in your area</h5>
+    <div class="row" id="joblist">
+        <!--Job Cards Returned Here-->
     </div>
-
-    <a id="getlocation" class="btn-large waves-effect waves-light  grey darken-4 text-upper">Get location</a>
-
-    <p id="demo"></p>
-
-    <h3 id="address"></h3>
-
-    <ul id="joblist" class="collection with-header">
-        <!--<li class="collection-item">Alvin</li>-->
-    </ul>
-
-
-    <div id="map"></div>
-
-
-    <div id="chartContainer" style="height: 500px; width: 100%;">
-    </div>
-
+    <br>
+    <br>
 </div>
+
+
 
 <div class="parallax-container">
     <div class="parallax"><img src="assets/images/fast.jpg"></div>
@@ -239,23 +203,11 @@
 </footer>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqEQmlJFm-bqFypQIalGFRynl7QxI2iO8&callback=initialize"
-        async defer></script>
-
-<script src="assets/javascript/gmaps.js"></script>
-
-<script src="assets/javascript/canvasjs.min.js"></script>
-
-<script type="text/JavaScript" src="assets/javascript/dev.js"></script>
-
-
 <script>
     $(document).ready(function () {
         $('.parallax').parallax();
         $(".button-for-nav").sideNav();
     });
-
-
 </script>
 
 

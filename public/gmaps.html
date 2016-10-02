@@ -30,13 +30,9 @@
                 <img src="assets/images/logo.png" alt="logo" class="logo">
             </a>
             <ul class="right hide-on-med-and-down">
-                <li>
-                    <button class="btn-large waves-effect waves-light  grey darken-3 text-upper"
-                            id="quickstart-sign-in">
-                        <i class="fa fa-github-alt white-text" aria-hidden="true"></i>
-                        Sign in with GitHub
-                    </button>
-                </li>
+                <li><a class="grey darken-1 waves-effect waves-light btn"
+                       href="https://github.com/anthonydelgado/dev-pulse"
+                       target="_blank" >Github</a></li>
             </ul>
         </div>
 </nav>
@@ -58,38 +54,39 @@
 
 
 
-<div class="jobs-container container">
+
+<div id="map_canvas" style="width: 100%; height: 500px">
+</div>
+
+<div class="container center">
+
     <br>
     <br>
-    <div class="row">
-        <div class="col s12">
-            <h3 class="center">
-                <a id="software-selected" class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
-                jobs in
-                <a id="location-selected" class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-state">New York City</a>
-            </h3>
+    <h1 class="header center text-upper">GEO HACK YOUR NEXT JOB</h1>
 
-
-
-            <!-- Dropdowns for Jobs -->
-            <ul id='dropdown-state' class='dropdown-content blue-text'>
-                <li><a href="#!" class="blue-text">Select State</a></li>
-                <li class="divider"></li>
-            </ul>
-
-            <ul id='dropdown-software' class='dropdown-content'>
-                <li><a href="#!" class="blue-text">Select Software</a></li>
-                <li class="divider"></li>
-            </ul>
-
-        </div>
+    <div class="row center">
+        <h5 class="header col s12 light">Find a job in your area</h5>
     </div>
-<div class="row" id="joblist">
-    <!--Job Cards Returned Here-->
+
+    <a id="getlocation" class="btn-large waves-effect waves-light  grey darken-4 text-upper">Get location</a>
+
+    <p id="demo"></p>
+
+    <h3 id="address"></h3>
+
+    <ul id="joblist" class="collection with-header">
+        <!--<li class="collection-item">Alvin</li>-->
+    </ul>
+
+
+    <div id="map"></div>
+
+
+    <div id="chartContainer" style="height: 500px; width: 100%;">
+    </div>
+
 </div>
-    <br>
-    <br>
-</div>
+
 
 <footer class="page-footer blue-grey lighten-4">
     <div class="container">
@@ -113,11 +110,22 @@
     </div>
 </footer>
 
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqEQmlJFm-bqFypQIalGFRynl7QxI2iO8&callback=initialize"
+        async defer></script>
+
+<script src="assets/javascript/gmaps.js"></script>
+
+<script src="assets/javascript/canvasjs.min.js"></script>
+
+<script type="text/JavaScript" src="assets/javascript/dev.js"></script>
+
+
 <script>
     $(document).ready(function () {
         $('.parallax').parallax();
         $(".button-for-nav").sideNav();
-    });
+    }); 
 </script>
 
 
@@ -136,9 +144,6 @@
     firebase.initializeApp(config);
 </script>
 
-<script type="text/JavaScript" src="assets/javascript/oauth.js"></script>
-<script type="text/JavaScript" src="assets/javascript/typed.js"></script>
-<script type="text/JavaScript" src="assets/javascript/joblist.js"></script>
-
+<script src="assets/javascript/oauth.js"></script>
 </body>
 </html>
