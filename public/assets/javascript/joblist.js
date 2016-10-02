@@ -3,7 +3,13 @@
  */
 
 $(document).ready(function () {
-    getJobs('javascript', 'New+York', 12);
+
+
+    var softwareselected = 'javascript';
+
+    var locationselected = 'New+York';
+
+        getJobs(softwareselected, locationselected, 12);
 
     var states = ["HI", "AK", "FL", "SC", "GA", "AL", "NC", "TN", "RI", "CT", "MA",
         "ME", "NH", "VT", "NY", "NJ", "PA", "DE", "MD", "WV", "KY", "OH",
@@ -28,17 +34,21 @@ $(document).ready(function () {
  // #location-selected #software-selected
     $(document).on('click', '.select-software', function () {
 
-        $('#software-selected').text($(this).data('software'));
+        var softwareselected = $(this).data('software');
 
-        getJobs($(this).data('software'), $('#location-selected').val(), 50);
+        $('#software-selected').text(softwareselected);
+
+        getJobs(softwareselected, locationselected, 50);
         event.preventDefault();
 
     });
     $(document).on('click', '.select-location', function () {
 
-        $('#location-selected').text($(this).data('location'));
+        var locationselected = $(this).data('location');
 
-        getJobs($('#software-selected').val(), $(this).data('location'), 50);
+        $('#location-selected').text(locationselected);
+
+        getJobs(softwareselected, locationselected, 50);
         event.preventDefault();
     });
 
