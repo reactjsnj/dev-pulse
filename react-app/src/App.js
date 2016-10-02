@@ -1,13 +1,3 @@
-var firebase = require("firebase");
-var config = {
-    apiKey: "AIzaSyBmkCEad6AxdRJVEy8MtrzETphHcnsNb24",
-    authDomain: "map-data-1e0ef.firebaseapp.com",
-    databaseURL: "https://map-data-1e0ef.firebaseio.com",
-    storageBucket: "map-data-1e0ef.appspot.com",
-    messagingSenderId: "729944294128"
-};
-firebase.initializeApp(config);
-
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';

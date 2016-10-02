@@ -3,9 +3,41 @@ window.jQuery = $;
 window.$ = $;
 var React = require('react');
 
+import * as firebase from 'firebase';
+var config = {
+    apiKey: "AIzaSyBmkCEad6AxdRJVEy8MtrzETphHcnsNb24",
+    authDomain: "map-data-1e0ef.firebaseapp.com",
+    databaseURL: "https://map-data-1e0ef.firebaseio.com",
+    storageBucket: "map-data-1e0ef.appspot.com",
+    messagingSenderId: "729944294128"
+};
+firebase.initializeApp(config);
 
 
 var SideNav = React.createClass({
+
+    getInitialState: function() {
+        console.log(firebase.auth().currentUser);
+        return {
+            loggedIn: (null !== firebase.auth().currentUser)
+        }
+    },
+
+    componentWillMount: function() {
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+
+            this.setState({
+                loggedIn: (null !== firebaseUser)
+            })
+
+            if (firebaseUser) {
+                console.log("Logged IN", firebaseUser);
+            } else {
+                console.log('Not logged in');
+            }
+        });
+    },
+
     handleChange: function (e) {
         var name = e.target.value;
         this.props.onChange(name);
@@ -13,6 +45,9 @@ var SideNav = React.createClass({
     closeNav: function (e) {
         $('.side-nav').toggleClass('open');
         $('#sidenav-overlay').toggleClass('open');
+    },
+    func: function () {
+
     },
     render: function () {
 
