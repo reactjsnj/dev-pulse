@@ -30,9 +30,13 @@
                 <img src="assets/images/logo.png" alt="logo" class="logo">
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a class="grey darken-1 waves-effect waves-light btn"
-                       href="https://github.com/anthonydelgado/dev-pulse"
-                       target="_blank" >Github</a></li>
+                <li>
+                    <button class="btn-large waves-effect waves-light  grey darken-3 text-upper"
+                            id="quickstart-sign-in">
+                        <i class="fa fa-github-alt white-text" aria-hidden="true"></i>
+                        Sign in with GitHub
+                    </button>
+                </li>
             </ul>
         </div>
 </nav>
@@ -53,91 +57,122 @@
 </ul>
 
 
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center white-text text-upper">Work <span class="hero-type">Anywhere</span></h1>
-        <div class="row center">
-            <h5 class="header col s12 light white-text">Take your skills where they are most needed.</h5>
-        </div>
-        <div class="row center">
-            <!-- Button that handles sign-in/sign-out -->
-            <button class="btn-large waves-effect waves-light  grey darken-3 text-upper"
-                    id="quickstart-sign-in">
-                <i class="fa fa-github-alt white-text" aria-hidden="true"></i>
-                Sign in with GitHub
-            </button>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col s12 center">
+
+            <h3 class="title"> <span class="mapLabel">Programming Jobs</span> Per State</h3>
 
         </div>
-        <br><br>
 
     </div>
-</div>
 
+    <div class="row">
 
-<div class="grey lighten-4 services">
-    <div class="container">
-        <div class="row">
+        <div class="col s11">
 
-            <div class="col s12 center">
-                <br>
-                <h4 class="light-blue-text text-darken-4">Find a developer job anywhere in the world!</h4>
+            <div id="tooltip"></div>
 
-                <p class="flow-text">We help you identify the best market place for your technical skills and help you
-                    find a job you'll love. We aggregate a wide range of API data to provide a snapshot of the
-                    technology scene in any particular region.</p>
-            </div>
+            <svg width="960" height="600" id="statesvg"></svg>
 
-            <div class="col s4">
-                <div class="center promo promo-example">
-                    <i class="material-icons">speaker_notes</i>
-                    <h5 class="light-blue-text text-darken-4">Get Data</h5>
-                    <p class="light center"> Get the inside scoop on the tech scene in any state.</p>
-                </div>
-            </div>
-            <div class="col s4">
-                <div class="center promo promo-example">
-                    <i class="material-icons">settings_input_antenna</i>
-                    <h5 class="light-blue-text text-darken-4">Find Jobs</h5>
-                    <p class="light center">Get access to every job market in the country.</p>
-                </div>
-            </div>
-            <div class="col s4">
-                <div class="center promo promo-example">
-                    <i class="material-icons">add_alert</i>
-                    <h5 class="light-blue-text text-darken-4">Get Alerts</h5>
-                    <p class="light center">Get alerts when you find the perfect job!</p>
-                </div>
-            </div>
+            <div id="tooltip1"></div>
+
+            <svg width="960" height="600" id="javascriptMap"></svg>
+
+            <div id="tooltip2"></div>
+
+            <svg width="960" height="600" id="nodeMap"></svg>
+
+            <div id="tooltip3"></div>
+
+            <svg width="960" height="600" id="pythonMap"></svg>
+
+            <div id="tooltip4"></div>
+
+            <svg width="960" height="600" id="rubyMap"></svg>
+
+            <div id="tooltip5"></div>
+
+            <svg width="960" height="600" id="phpMap"></svg>
+
         </div>
+
+
+        <div class="col s1">
+
+            <div class="custom-controls-stacked">
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked0" name="radio-stacked" type="radio" class="custom-control-input" checked="checked">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">Programing Jobs</span>
+
+                </label>
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">Javascript</span>
+
+                </label>
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked2" name="radio-stacked" type="radio" class="custom-control-input">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">Node</span>
+
+                </label>
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked3" name="radio-stacked" type="radio" class="custom-control-input">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">Python</span>
+
+                </label>
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked4" name="radio-stacked" type="radio" class="custom-control-input">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">Ruby</span>
+
+                </label>
+
+                <label class="custom-control custom-radio">
+
+                    <input id="radioStacked5" name="radio-stacked" type="radio" class="custom-control-input">
+
+                    <span class="custom-control-indicator"></span>
+
+                    <span class="custom-control-description">PHP</span>
+
+                </label>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
 
-<div class="parallax-container">
-    <div class="parallax"><img src="assets/images/laptop.jpg"></div>
-</div>
-
-
-<div class="section footer-cta blue darken-3">
-    <div class="container">
-        <br><br>
-        <div class="row center">
-            <div class="col s12">
-                <p class="flow-text light white-text">Dev Pulse is currently indexing over 100,000 software developer
-                    jobs all across the country.
-                    <br>
-                    Find a career you'll love in a city that you'll fall in love with.</p>
-            </div>
-        </div>
-        <div class="row center">
-            <a class="btn-large waves-effect waves-light  grey darken-3 text-upper">
-                Get Started</a>
-        </div>
-        <br><br>
-
-    </div>
-</div>
 
 
 <div class="container">
@@ -179,43 +214,6 @@
     <br>
 </div>
 
-
-<div id="map_canvas" style="width: 100%; height: 500px">
-</div>
-
-<div class="container center">
-
-    <br>
-    <br>
-    <h1 class="header center text-upper">GEO HACK YOUR NEXT JOB</h1>
-
-    <div class="row center">
-        <h5 class="header col s12 light">Find a job in your area</h5>
-    </div>
-
-    <a id="getlocation" class="btn-large waves-effect waves-light  grey darken-4 text-upper">Get location</a>
-
-    <p id="demo"></p>
-
-    <h3 id="address"></h3>
-
-    <ul id="joblist" class="collection with-header">
-        <!--<li class="collection-item">Alvin</li>-->
-    </ul>
-
-
-    <div id="map"></div>
-
-
-    <div id="chartContainer" style="height: 500px; width: 100%;">
-    </div>
-
-</div>
-
-<div class="parallax-container">
-    <div class="parallax"><img src="assets/images/fast.jpg"></div>
-</div>
-
 <footer class="page-footer blue-grey lighten-4">
     <div class="container">
         <div class="row center">
@@ -238,24 +236,11 @@
     </div>
 </footer>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqEQmlJFm-bqFypQIalGFRynl7QxI2iO8&callback=initialize"
-        async defer></script>
-
-<script src="assets/javascript/gmaps.js"></script>
-
-<script src="assets/javascript/canvasjs.min.js"></script>
-
-<script type="text/JavaScript" src="assets/javascript/dev.js"></script>
-
-
 <script>
     $(document).ready(function () {
         $('.parallax').parallax();
         $(".button-for-nav").sideNav();
     });
-
-
 </script>
 
 
@@ -274,9 +259,30 @@
     firebase.initializeApp(config);
 </script>
 
-<script src="assets/javascript/oauth.js"></script>
-<script src="assets/javascript/typed.js"></script>
-<script src="assets/javascript/joblist.js"></script>
+<script type="text/JavaScript" src="assets/javascript/oauth.js"></script>
 
+<script type="text/JavaScript" src="assets/javascript/joblist.js"></script>
+
+<!--d3 map-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+
+<script src="https://crossorigin.me/http://d3js.org/d3.v3.min.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapImg.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapJavascript.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapPHP.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapPython.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapRuby.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/mapNode.js"></script>
+
+<script type="text/javascript" src="./assets/javascript/map.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </body>
 </html>

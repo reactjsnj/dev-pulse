@@ -1,0 +1,267 @@
+.state{
+		fill: none;
+		stroke: #a9a9a9;
+		stroke-width: 1;
+}
+.state:hover{
+	fill-opacity:0.5;
+}
+#tooltip {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip table{
+	table-layout:fixed;
+}
+#tooltip tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip tr td:nth-child(1){
+	width:50px;
+}
+#tooltip tr td:nth-child(2){
+	text-align:center;
+}
+
+.title{
+
+	text-align: center;
+
+}
+
+.mapLabel{
+
+	
+
+}
+
+#tooltip1 {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip1 h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip1{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip1 table{
+	table-layout:fixed;
+}
+#tooltip1 tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip1 tr td:nth-child(1){
+	width:50px;
+}
+#tooltip1 tr td:nth-child(2){
+	text-align:center;
+}
+
+#tooltip2 {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip2 h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip2{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip2 table{
+	table-layout:fixed;
+}
+#tooltip2 tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip2 tr td:nth-child(1){
+	width:50px;
+}
+#tooltip2 tr td:nth-child(2){
+	text-align:center;
+}
+
+#tooltip3 {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip3 h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip3{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip3 table{
+	table-layout:fixed;
+}
+#tooltip3 tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip3 tr td:nth-child(1){
+	width:50px;
+}
+#tooltip3 tr td:nth-child(2){
+	text-align:center;
+}
+
+#tooltip4 {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip4 h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip4{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip4 table{
+	table-layout:fixed;
+}
+#tooltip4 tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip4 tr td:nth-child(1){
+	width:50px;
+}
+#tooltip4 tr td:nth-child(2){
+	text-align:center;
+}
+
+#tooltip5 {   
+	position: absolute;           
+	text-align: center;
+	padding: 20px;             
+	margin: 10px;
+	font: 12px sans-serif;        
+	background: lightsteelblue;   
+	border: 1px;      
+	border-radius: 2px;           
+	pointer-events: none;         
+}
+#tooltip5 h4{
+	margin:0;
+	font-size:14px;
+}
+#tooltip5{
+	background:rgba(0,0,0,0.9);
+	border:1px solid grey;
+	border-radius:5px;
+	font-size:12px;
+	width:auto;
+	padding:4px;
+	color:white;
+	opacity:0;
+}
+#tooltip5 table{
+	table-layout:fixed;
+}
+#tooltip5 tr td{
+	padding:0;
+	margin:0;
+}
+#tooltip5 tr td:nth-child(1){
+	width:50px;
+}
+#tooltip5 tr td:nth-child(2){
+	text-align:center;
+}
+
+#javascriptMap, #nodeMap, #pythonMap, #rubyMap, #phpMap{
+
+	display: none;
+
+}
+
+.getData{
+ 	
+ 	text-align: center;
+
+	margin-top: 2em;
+
+}
