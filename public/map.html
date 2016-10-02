@@ -175,44 +175,38 @@
 
 
 
-<div class="container">
+
+<div id="jobs-container" class="container">
     <br>
     <br>
     <div class="row">
         <div class="col s12">
             <h3 class="center">
-                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
+                <a id="software-selected" class="dropdown-button" href="#jobs-container " data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
                 jobs in
-                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-city">New York City</a>
+                <a id="location-selected" class="dropdown-button" href="#jobs-container " data-beloworigin="true" data-activates="dropdown-state">New York City</a>
             </h3>
-
-
-
             <!-- Dropdowns for Jobs -->
-            <ul id='dropdown-city' class='dropdown-content blue-text'>
-                <li><a href="#!" class="blue-text">New York City</a></li>
+            <ul id='dropdown-state' class='dropdown-content blue-text'>
+                <li><a href="#!" class="blue-text">Select State</a></li>
                 <li class="divider"></li>
-                <li><a href="#!" class="blue-text">San Fransisco</a></li>
-                <li><a href="#!" class="blue-text">Japan</a></li>
             </ul>
+
             <ul id='dropdown-software' class='dropdown-content'>
-                <li><a href="#!" class="blue-text">Javascript</a></li>
+                <li><a href="#!" class="blue-text">Select Software</a></li>
                 <li class="divider"></li>
-                <li><a href="#!" class="blue-text">Node</a></li>
-                <li><a href="#!" class="blue-text">React</a></li>
-                <li><a href="#!" class="blue-text">PHP</a></li>
-                <li><a href="#!" class="blue-text">Python</a></li>
-                <li><a href="#!" class="blue-text">Ruby</a></li>
             </ul>
 
         </div>
     </div>
-<div class="row" id="joblist">
-    <!--Job Cards Returned Here-->
-</div>
+    <div class="row" id="joblist">
+        <!--Job Cards Returned Here-->
+    </div>
     <br>
     <br>
 </div>
+
+
 
 <footer class="page-footer blue-grey lighten-4">
     <div class="container">
