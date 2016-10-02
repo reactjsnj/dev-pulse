@@ -29,7 +29,9 @@ html, body {
 .parallax img {
     max-width: 100%;
 }
-
+footer.page-footer {
+    margin-top: 0;
+}
 .typed-cursor{
     opacity: 1;
     -webkit-animation: blink 1s infinite;

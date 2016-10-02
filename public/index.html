@@ -31,7 +31,8 @@
             </a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="grey darken-1 waves-effect waves-light btn"
-                       href="https://github.com/anthonydelgado/dev-pulse">Github</a></li>
+                       href="https://github.com/anthonydelgado/dev-pulse"
+                       target="_blank" >Github</a></li>
             </ul>
         </div>
 </nav>
@@ -144,7 +145,31 @@
     <br>
     <div class="row">
         <div class="col s12">
-            <h3><strong>Javascript</strong> jobs in <strong>New York City</strong></h3>
+            <h3 class="center">
+                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-software">Javascript</a>
+                jobs in
+                <a class="dropdown-button" href="#" data-beloworigin="true" data-activates="dropdown-city">New York City</a>
+            </h3>
+
+
+
+            <!-- Dropdowns for Jobs -->
+            <ul id='dropdown-city' class='dropdown-content blue-text'>
+                <li><a href="#!" class="blue-text">New York City</a></li>
+                <li class="divider"></li>
+                <li><a href="#!" class="blue-text">San Fransisco</a></li>
+                <li><a href="#!" class="blue-text">Japan</a></li>
+            </ul>
+            <ul id='dropdown-software' class='dropdown-content'>
+                <li><a href="#!" class="blue-text">Javascript</a></li>
+                <li class="divider"></li>
+                <li><a href="#!" class="blue-text">Node</a></li>
+                <li><a href="#!" class="blue-text">React</a></li>
+                <li><a href="#!" class="blue-text">PHP</a></li>
+                <li><a href="#!" class="blue-text">Python</a></li>
+                <li><a href="#!" class="blue-text">Ruby</a></li>
+            </ul>
+
         </div>
     </div>
 <div class="row" id="joblist">
@@ -154,17 +179,14 @@
     <br>
 </div>
 
+
+<div id="map_canvas" style="width: 100%; height: 500px">
+</div>
+
 <div class="container center">
 
     <br>
     <br>
-
-
-
-
-
-
-
     <h1 class="header center text-upper">GEO HACK YOUR NEXT JOB</h1>
 
     <div class="row center">
@@ -193,10 +215,6 @@
 <div class="parallax-container">
     <div class="parallax"><img src="assets/images/fast.jpg"></div>
 </div>
-
-<div id="map_canvas" style="">
-</div>
-
 
 <footer class="page-footer blue-grey lighten-4">
     <div class="container">
@@ -249,7 +267,6 @@
 
 </script>
 
-<!--login for github -->
 
 
 <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
@@ -265,161 +282,9 @@
     firebase.initializeApp(config);
 </script>
 
-<script type="text/javascript">
-    /**
-     * Function called when clicking the Login/Logout button.
-     */
-    // [START buttoncallback]
-    function toggleSignIn() {
-        if (!firebase.auth().currentUser) {
-            // [START createprovider]
-            var provider = new firebase.auth.GithubAuthProvider();
-            // [END createprovider]
-            // [START addscopes]
-            provider.addScope('repo');
-            // [END addscopes]
-            // [START signin]
-            firebase.auth().signInWithPopup(provider).then(function (result) {
-                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                // [START_EXCLUDE]
-                document.getElementById('quickstart-oauthtoken').textContent = token;
-                // [END_EXCLUDE]
-            }).catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // [START_EXCLUDE]
-                if (errorCode === 'auth/account-exists-with-different-credential') {
-                    alert('You have already signed up with a different auth provider for that email.');
-                    // If you are using multiple auth providers on your app you should handle linking
-                    // the user's accounts here.
-                } else {
-                    console.error(error);
-                }
-                // [END_EXCLUDE]
-            });
-            // [END signin]
-        } else {
-            // [START signout]
-            firebase.auth().signOut();
-            // [END signout]
-        }
-        // [START_EXCLUDE]
-        document.getElementById('quickstart-sign-in').disabled = true;
-        // [END_EXCLUDE]
-    }
-    // [END buttoncallback]
-    /**
-     * initApp handles setting up UI event listeners and registering Firebase auth listeners:
-     *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
-     *    out, and that is where we update the UI.
-     */
+<script src="assets/javascript/oauth.js"></script>
+<script src="assets/javascript/typed.js"></script>
+<script src="assets/javascript/joblist.js"></script>
 
-    function initApp() {
-        // Listening for auth state changes.
-        // [START authstatelistener]
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
-                var providerData = user.providerData;
-
-                document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-
-                console.log(displayName);
-                $('#auth-name').text(displayName);
-
-                console.log(photoURL);
-                $('#auth-avatar').attr('src', photoURL);
-
-                console.log(email);
-                $('#auth-status').text(email);
-
-
-//
-//                auth-email
-//                auth-avatar
-//                auth-status
-                // [END_EXCLUDE]
-            } else {
-                // User is signed out.
-
-                //If user is signed out - Show the GitHub Auth button to Sign in.
-                var githubIcon = '<i class="fa fa-github-alt white-text" aria-hidden="true"></i>';
-                $('#quickstart-sign-in').html(githubIcon + ' Sign in with GitHub');
-
-                // [END_EXCLUDE]
-                $('#auth-name').text('');
-                $('#auth-avatar').attr('src', 'https://www.gravatar.com/avatar/205e460b479e2e5b48dsc07710c08d50?d=mm&s=150');
-                $('#auth-status').text('You are signed out.');
-
-            }
-            // [START_EXCLUDE]
-            document.getElementById('quickstart-sign-in').disabled = false;
-            // [END_EXCLUDE]
-        });
-        // [END authstatelistener]
-        document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
-    }
-    window.onload = function () {
-        initApp();
-    };
-
-
-
-
-    $(document).ready(function () {
-
-        //Indeed API by Erick
-        var indeedURL = "http://api.indeed.com/ads/apisearch?publisher=8023780673544955&format=json&v=2&q=javascript&jobs?q=developer&l=New+York";
-
-
-        $.ajax({
-            url: indeedURL,
-            method: 'GET',
-            dataType:'jsonp'
-        })
-                .done(function(response) {
-                    console.log("test");
-                    var results = response.results;
-                    console.log(response);
-
-
-                    $.each(results, function (key, value) {
-                        console.log( value.company);
-//                        var gig = '<li class="collection-item"><a href="' + value.url + '">' + value.jobtitle + ' at ' + value.company + '</a></li>';
-                        var gig = ' <div class="col s12 m4"><div class="card"><div class="card-content"><span class="card-title">' + value.jobtitle + '</span><p> at ' + value.company + '<br>' + value.snippet + '</p></div><div class="card-action"><a href="#">Save</a><a href="' + value.url + '" target="_blank">View Job</a></div></div></div>';
-                        $('#joblist').append(gig);
-
-
-                    });
-
-
-                });
-
-    });
-
-
-</script>
-<script>
-    $(function(){
-        $(".hero-type").typed({
-            strings: ["Anywhere", "in California", "in Hawaii", "in New York", "in Japan", "Anywhere"],
-            typeSpeed: 150
-        });
-    });
-</script>
 </body>
 </html>
